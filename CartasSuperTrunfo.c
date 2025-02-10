@@ -1,22 +1,57 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+#define NUM_ESTADOS 8
+#define CIDADES_POR_ESTADO 4
+
+// Estrutura para representar uma cidade
+typedef struct {
+    char codigo[4];
+    int populacao;
+    float area;
+    float pib;
+    int pontos_turisticos;
+} Cidade;
 
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    Cidade cartas[NUM_ESTADOS * CIDADES_POR_ESTADO];
+    char estados[NUM_ESTADOS] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    int indice = 0;
 
+    printf("Cadastro de Cartas - Super Trunfo: Países\n\n");
+    
+    // Cadastro das cartas
+    for (int i = 0; i < NUM_ESTADOS; i++) {
+        for (int j = 0; j < CIDADES_POR_ESTADO; j++) {
+            sprintf(cartas[indice].codigo, "%c%02d", estados[i], j + 1);
+            printf("Cadastro da cidade %s:\n", cartas[indice].codigo);
+            
+            printf("População: ");
+            scanf("%d", &cartas[indice].populacao);
+            
+            printf("Área (km²): ");
+            scanf("%f", &cartas[indice].area);
+            
+            printf("PIB (em bilhões): ");
+            scanf("%f", &cartas[indice].pib);
+            
+            printf("Número de pontos turísticos: ");
+            scanf("%d", &cartas[indice].pontos_turisticos);
+            
+            indice++;
+            printf("\n");
+        }
+    }
+    
+    // Exibição dos dados cadastrados
+    printf("\nCartas cadastradas:\n");
+    for (int i = 0; i < NUM_ESTADOS * CIDADES_POR_ESTADO; i++) {
+        printf("Código: %s\n", cartas[i].codigo);
+        printf("População: %d\n", cartas[i].populacao);
+        printf("Área: %.2f km²\n", cartas[i].area);
+        printf("PIB: %.2f bilhões\n", cartas[i].pib);
+        printf("Pontos turísticos: %d\n", cartas[i].pontos_turisticos);
+        printf("-----------------------------\n");
+    }
+    
     return 0;
 }
